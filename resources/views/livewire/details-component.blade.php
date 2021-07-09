@@ -1,18 +1,18 @@
 <main id="main" class="main-site">
     <style>
-        .regprice{
-            font-weight: 300;
-            font-size: 13px !important;
-            color: #aaaaaa !important;
-            text-decoration: line-through;
-            padding-left: 10px;
-        }
+    .regprice {
+        font-weight: 300;
+        font-size: 13px !important;
+        color: #aaaaaa !important;
+        text-decoration: line-through;
+        padding-left: 10px;
+    }
     </style>
     <div class="container">
         <div class="wrap-breadcrumb">
             <ul>
                 <li class="item-link"><a href="/" class="link">home</a></li>
-                <li class="item-link"><span>detail</span></li>
+                <li class="item-link"><span>details</span></li>
             </ul>
         </div>
         <div class="row">
@@ -21,9 +21,19 @@
                     <div class="detail-media">
                         <div class="product-gallery">
                             <ul class="slides">
-                                <li data-thumb="{{asset('assets/images/products')}}/{{ $product->image }}">
+                                <li data-thumb="{{asset('assets/images/products')}}/{{ $image }}">
                                     <img src="{{asset('assets/images/products')}}/{{ $product->image }}" alt="{{ $product->name }}" />
                                 </li>
+                                    @php
+                                        $images = explode(',',$product->images);
+                                    @endphp
+                                    @foreach ($imges as $image)
+                                        @if ($image)
+                                            <li data-thumb="{{asset('assets/images/products')}}/{{ $image }}">
+                                                <img src="{{asset('assets/images/products')}}/{{ $image }}" alt="{{ $product->name }}" />
+                                            </li>
+                                        @endif
+                                    @endforeach
                             </ul>
                         </div>
                     </div>

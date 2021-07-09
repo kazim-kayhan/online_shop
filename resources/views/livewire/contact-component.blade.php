@@ -19,7 +19,7 @@
                                 @if (Session::has('message'))
                                     <div class="alert alert-success" role="alert">{{ Session::get('message') }}<div>
                                 @endif
-								<form name="frm-contact" wire:submit.prevent="sendMessage">
+								<form name="form-contact" wire:submit.prevent="sendMessage">
 									<label for="name">Name<span>*</span></label>
 									<input type="text" value="" id="name" name="name" wire:model="name">
                                     @error('name') <p class="text-danger">{{ $message }}</p> @enderror
@@ -33,31 +33,13 @@
 									<textarea name="comment" id="comment" wire:model="comment"></textarea>
                                     @error('comment') <p class="text-danger">{{ $message }}</p> @enderror
 									<input type="submit" name="ok" value="Submit" >
-									
 								</form>
 							</div>
 						</div>
 						<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 							<div class="contact-box contact-info">
 								<div class="wrap-map">
-									<div class="mercado-google-maps"
-										 id="az-google-maps57341d9e51968"
-										 data-hue=""
-										 data-lightness="1"
-										 data-map-style="2"
-										 data-saturation="-100"
-										 data-modify-coloring="false"
-										 data-title_maps="Kute themes"
-										 data-phone="+93770038759"
-										 data-email="kazimmohammadi400@gmail.com"
-										 data-address="Z1001 TP. Afghanistan Kabul"
-										 data-longitude="-0.120850"
-										 data-latitude="51.508742"
-										 data-pin-icon=""
-										 data-zoom="16"
-										 data-map-type="ROADMAP"
-										 data-map-height="263">
-									</div>
+									
 								</div>
 								<h2 class="box-title">Contact Detail</h2>
 								<div class="wrap-icon-box">
@@ -66,7 +48,7 @@
 										<i class="fa fa-envelope" aria-hidden="true"></i>
 										<div class="right-info">
 											<b>Email</b>
-											<p>kazimmohammadi400@gmail.com</p>
+											<p>{{ $settings->email }}</p>
 										</div>
 									</div>
 
@@ -74,15 +56,15 @@
 										<i class="fa fa-phone" aria-hidden="true"></i>
 										<div class="right-info">
 											<b>Phone</b>
-											<p>+93-7700-38-759</p>
+											<p>{{ $settings->phone }} - {{ $settings->phone2 }}</p>
 										</div>
 									</div>
 
 									<div class="icon-box-item">
 										<i class="fa fa-map-marker" aria-hidden="true"></i>
 										<div class="right-info">
-											<b>Mail Office</b>
-											<p>Anarsoft Technology Services Company<br />Barchi City Walk,Jade Sahid Mazari, Kabul</p>
+											<b>Main Office</b>
+											<p>{{ $settings->address }}</p>
 										</div>
 									</div>
 

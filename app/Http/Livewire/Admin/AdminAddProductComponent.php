@@ -24,6 +24,7 @@ class AdminAddProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
+    public $images;
 
     public function mount()
     {
@@ -33,13 +34,13 @@ class AdminAddProductComponent extends Component
 
     public function generateSlug()
     {
-        $this->slug = Str::slug($this->name,'-');
+        $this->slug = Str::slug($this->name, '-');
     }
 
 
     public function updated($fields)
     {
-        $this->validateOnly($fields,[
+        $this->validateOnly($fields, [
             'name' => 'required',
             'slug' => 'required|unique:categories',
             'short_description' => 'required',
@@ -80,17 +81,28 @@ class AdminAddProductComponent extends Component
         $product->stock_status = $this->stock_status;
         $product->featured = $this->featured;
         $product->quantity = $this->quantity;
-        $imgName = Carbon::now()->timestamp. '.' . $this->image->extension();
-        $this->image->storeAs('products',$imgName);
+        $imgName = Carbon::now()->timestamp . '.' . $this->image->extension();
+        $this->image->storeAs('products', $imgName);
         $product->image = $imgName;
+
+        if ($this->images) {
+            $imgsName = '';
+            foreach ($this->images as $key => $image) {
+                $imgsName = Carbon::now()->timestamp . $key . '.' . $image->extension();
+                $image->storeAs('products', $imgName);
+                $imgsName = $imgsName . ',' . $imgName;
+            }
+            $product->images = $imgsName;
+        }
+
         $product->category_id = $this->category_id;
         $product->save();
-        session()->flash('message','Product has been created successfully!');
+        session()->flash('message', 'Product has been created successfully!');
     }
 
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.admin.admin-add-product-component',['categories'=>$categories])->layout('layouts.base');
+        return view('livewire.admin.admin-add-product-component', ['categories' => $categories])->layout('layouts.base');
     }
 }
