@@ -71,75 +71,75 @@
                                         </ul>
                                     </li>
                                     @if (Route::has('login'))
-                                    @auth
-                                    @if (Auth::user()->utype === 'ADM')
-                                    <li class="menu-item menu-item-has-children parent" >
-                                        <a title="My Account" href="#">My Account ({{ Auth::user()->name }})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                        <ul class="submenu curency" >
-                                            <li class="menu-item" >
-                                                <a title="Dashboad" href="{{ route('admin.dashboard') }}">Dashboad</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a title="All Categories" href="{{ route('admin.categories') }}">All Categories</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a  title="All Products" href="{{ route('admin.products') }}">All Products</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a  title="All coupons" href="{{ route('admin.coupons') }}">All Coupons</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a  title="All orders" href="{{ route('admin.orders') }}">All Orders</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a  title="Contact Messages" href="{{ route('admin.contact') }}">Contact Messages</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a  title="Contact Messages" href="{{ route('admin.settings') }}">Settings</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a title="manage home slider" href="{{ route('admin.homeSlider') }}">Manage Home Sliders</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a title="manage home categories" href="{{ route('admin.homeCategories') }}">Manage Home Categories</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a title="sale setting" href="{{ route('admin.sale') }}">Sale Setting</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a title="Logout" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                            </li>
-                                            <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                            </form>
-                                        </ul>
-                                    </li>
-                                    @else
-                                    <li class="menu-item menu-item-has-children parent" >
-                                        <a title="My Account" href="#">My Account ({{ Auth::user()->name }})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                        <ul class="submenu curency" >
-                                            <li class="menu-item" >
-                                                <a title="Dashboad" href="{{ route('user.dashboard') }}">Dashboad</a>
-                                            </li>
-                                            <li class="menu-item" >
-                                                <a title="My orders" href="{{ route('user.orders') }}">My Orders</a>
-                                            </li>
-                                            <li class="menu-item" >
-                                                <a title="My orders" href="{{ route('user.changepassword') }}">Change Password</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                            </li>
-                                            <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                            </form>
-                                        </ul>
-                                    </li>
-                                    @endif
-                                    @else
-                                    <li class="menu-item" ><a title="Register or Login" href="{{ route('login') }}">Login</a></li>
-                                    <li class="menu-item" ><a title="Register or Login" href="{{ route('register') }}">Register</a></li>
-                                    @endauth
+                                        @auth
+                                            @if (Auth::user()->utype === 'ADM')
+                                                <li class="menu-item menu-item-has-children parent" >
+                                                    <a title="My Account" href="#">My Account ({{ Auth::user()->name }})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                    <ul class="submenu curency" >
+                                                        <li class="menu-item" >
+                                                            <a title="Dashboad" href="{{ route('admin.dashboard') }}">Dashboad</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a title="All Categories" href="{{ route('admin.categories') }}">All Categories</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a  title="All Products" href="{{ route('admin.products') }}">All Products</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a  title="All coupons" href="{{ route('admin.coupons') }}">All Coupons</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a  title="All orders" href="{{ route('admin.orders') }}">All Orders</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a  title="Contact Messages" href="{{ route('admin.contact') }}">Contact Messages</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a  title="Contact Messages" href="{{ route('admin.settings') }}">Settings</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a title="manage home slider" href="{{ route('admin.homeSlider') }}">Manage Home Sliders</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a title="manage home categories" href="{{ route('admin.homeCategories') }}">Manage Home Categories</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a title="sale setting" href="{{ route('admin.sale') }}">Sale Setting</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a title="Logout" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                        </li>
+                                                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                                            @csrf
+                                                        </form>
+                                                    </ul>
+                                                </li>
+                                            @else
+                                                <li class="menu-item menu-item-has-children parent" >
+                                                    <a title="My Account" href="#">My Account ({{ Auth::user()->name }})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                                    <ul class="submenu curency" >
+                                                        <li class="menu-item" >
+                                                            <a title="Dashboad" href="{{ route('user.dashboard') }}">Dashboad</a>
+                                                        </li>
+                                                        <li class="menu-item" >
+                                                            <a title="My orders" href="{{ route('user.orders') }}">My Orders</a>
+                                                        </li>
+                                                        <li class="menu-item" >
+                                                            <a title="My orders" href="{{ route('user.changepassword') }}">Change Password</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                        </li>
+                                                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                                            @csrf
+                                                        </form>
+                                                    </ul>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li class="menu-item" ><a title="Register or Login" href="{{ route('login') }}">Login</a></li>
+                                            <li class="menu-item" ><a title="Register or Login" href="{{ route('register') }}">Register</a></li>
+                                        @endauth
                                     @endif
                                 </ul>
                             </div>
