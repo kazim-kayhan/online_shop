@@ -226,7 +226,7 @@
         <script src="{{ asset('assets/js/moment.js')}}"></script>
         <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
         <script src="{{ asset('assets/js/nouislider.min.js')}}"></script>
-        <script src="{{ asset('assets/js/tinymce.min.js')}}"></script>
+        <script src="{{ asset('assets/js/ckeditor.js')}}"></script>
         @livewireScripts
         @stack('scripts')
     </body>
