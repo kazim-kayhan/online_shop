@@ -197,7 +197,7 @@
                                         <a href="/checkout" class="link-term mercado-item-title">Checkout</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="about-us.html" class="link-term mercado-item-title">About Us</a>
+                                        <a href="/about-us" class="link-term mercado-item-title">About Us</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="/contact-us" class="link-term mercado-item-title">Contact Us</a>

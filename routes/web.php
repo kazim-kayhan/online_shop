@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\AboutComponent;
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
 use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminAddProductComponent;
@@ -57,6 +58,7 @@ Route::get('/search',SearchComponent::class)->name('product.search');
 Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');
 Route::get('/thankyou',ThankYouComponent::class)->name('thankyou');
 Route::get('/contact-us',ContactComponent::class)->name('contact');
+Route::get('/about-us',AboutComponent::class)->name('about-us');
 
 //for normal user or customer
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){

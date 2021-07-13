@@ -26,14 +26,14 @@
                     <div class="detail-media">
                         <div class="product-gallery" wire:ignore>
                             <ul class="slides">
-                                <li data-thumb="{{ asset('assets/images/products') }}/{{ $image }}">
+                                <li data-thumb="{{ asset('assets/images/products') }}/{{ $product->images }}">
                                     <img src="{{ asset('assets/images/products') }}/{{ $product->image }}"
                                         alt="{{ $product->name }}" />
                                 </li>
                                 @php
                                     $images = explode(',', $product->images);
                                 @endphp
-                                @foreach ($imges as $image)
+                                @foreach ($images as $image)
                                     @if ($image)
                                         <li data-thumb="{{ asset('assets/images/products') }}/{{ $image }}">
                                             <img src="{{ asset('assets/images/products') }}/{{ $image }}"
@@ -55,6 +55,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>    
                                 @else
                                     <i class="fa fa-star color-gray" aria-hidden="true"></i>
+                                @endif
                             @endfor
                             <a href="#" class="count-review">({{ $product->orderItems->where('rstatus', 1)->count() }} review )</a>
                         </div>
