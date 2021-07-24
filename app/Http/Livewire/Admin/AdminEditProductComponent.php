@@ -26,33 +26,36 @@ class AdminEditProductComponent extends Component
     public $category_id;
     public $newimage;
     public $product_id;
+    public $images;
+    public $newimages;
 
     public function mount($product_slug)
     {
-        $prodcut = Product::where('slug',$product_slug)->first();
-        $this->name = $prodcut->name;
-        $this->slug = $prodcut->slug;
-        $this->short_description = $prodcut->short_description;
-        $this->description = $prodcut->description;
-        $this->regular_price = $prodcut->regular_price;
-        $this->sale_price = $prodcut->sale_price;
-        $this->SKU = $prodcut->SKU;
-        $this->stock_status = $prodcut->stock_status;
-        $this->featured = $prodcut->featured;
-        $this->quantity = $prodcut->quantity;
-        $this->image = $prodcut->image;
-        $this->category_id = $prodcut->category_id;
-        $this->product_id = $prodcut->id;
+        $product = Product::where('slug', $product_slug)->first();
+        $this->name = $product->name;
+        $this->slug = $product->slug;
+        $this->short_description = $product->short_description;
+        $this->description = $product->description;
+        $this->regular_price = $product->regular_price;
+        $this->sale_price = $product->sale_price;
+        $this->SKU = $product->SKU;
+        $this->stock_status = $product->stock_status;
+        $this->featured = $product->featured;
+        $this->quantity = $product->quantity;
+        $this->image = $product->image;
+        $this->images = explode(',', $product->images);
+        $this->category_id = $product->category_id;
+        $this->product_id = $product->id;
     }
 
     public function generateSlug()
     {
-        $this->slug = Str::slug($this->name,'-');
+        $this->slug = Str::slug($this->name, '-');
     }
 
     public function updated($fields)
     {
-        $this->validateOnly($fields,[
+        $this->validateOnly($fields, [
             'name' => 'required',
             'slug' => 'required|unique:categories',
             'short_description' => 'required',
@@ -93,20 +96,37 @@ class AdminEditProductComponent extends Component
         $product->stock_status = $this->stock_status;
         $product->featured = $this->featured;
         $product->quantity = $this->quantity;
-        if($this->newimage)
-        {
-            $imgName = Carbon::now()->timestamp. '.' . $this->newimage->extension();
-            $this->newimage->storeAs('products',$imgName);
+        if ($this->newimage) {
+            unlink('assets/images/products/' . $product->image);
+            $imgName = Carbon::now()->timestamp . '.' . $this->newimage->extension();
+            $this->newimage->storeAs('products', $imgName);
             $product->image = $imgName;
+        }
+        if ($this->newimages) {
+            if ($product->images) {
+                $images = explode(',', $product->images);
+                foreach ($images as $image) {
+                    if ($image) {
+                        unlink('assets/images/products/' . $image);
+                    }
+                }
+            }
+            $imagesname = '';
+            foreach ($this->newimages as $key => $image) {
+                $imgName = Carbon::now()->timestamp .$key. '.' . $image->extension();
+                $image->storeAs('products', $imgName);
+                $imagesname = $imagesname. ','. $imgName;
+            }
+            $product->images = $imagesname;
         }
         $product->category_id = $this->category_id;
         $product->save();
-        session()->flash('message','Product has been updated successfully!');
+        session()->flash('message', 'Product has been updated successfully!');
     }
 
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.admin.admin-edit-product-component',['categories'=>$categories])->layout('layouts.base');
+        return view('livewire.admin.admin-edit-product-component', ['categories' => $categories])->layout('layouts.base');
     }
 }
