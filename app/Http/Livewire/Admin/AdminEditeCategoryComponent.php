@@ -50,13 +50,21 @@ class AdminEditeCategoryComponent extends Component
     public function updateCategory()
     {
         $this->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:categories'
-        ]);
-        $category = Category::find($this->category_id);
-        $category->name = $this->name;
-        $category->slug = $this->slug;
-        $category->save();
+        'name' => 'required',
+        'slug' => 'required|unique:categories'
+    ]);
+        if ($this->scategory_id) {
+            $scategory = Subcategory::find($this->scategory_id);
+            $scategory->name = $this->name;
+            $scategory->slug = $this->slug;
+            $scategory->category_id = $this->category_id;
+            $scategory->save();
+        } else {
+            $category = Category::find($this->category_id);
+            $category->name = $this->name;
+            $category->slug = $this->slug;
+            $category->save();
+        }
         session()->flash('message', 'Category has been updated successfully!');
     }
 
