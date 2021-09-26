@@ -46,7 +46,7 @@
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td>
-                                        <ul class="cslist"> @foreach ($category->subCategories as $category) <li><i class="fa fa-caret-right"></i>{{ $category->name }}</li> @endforeach </ul>
+                                        <ul class="cslist"> @foreach ($category->subCategories as $category) <li><i class="fa fa-caret-right"></i>{{ $category->name }} <a href="{{ route('admin.editeCategory',['category_slug'=>$category->slug,'scategory_slug'=>$scategory->slug ]) }}"><i class="fa fa-edit"></i></a> </li> @endforeach </ul>
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.editeCategory',['category_slug'=>$category->slug]) }}"><i class="fa fa-edit fa-2x"></i></a>
