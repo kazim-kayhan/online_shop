@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
+use App\Models\Favourit;
+use App\Models\OrderItem;
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Stmt\Return_;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -16,5 +19,13 @@ class Product extends Model
     }
     public function favourit(){
         return $this->hasMany(Favourit::class);
+    }
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'product_id');
+    }
+    public function subCategories()
+    {
+        return $this->belongsTo(Subcategory::class, 'subcategory_id');
     }
 }
