@@ -55,12 +55,12 @@ margin-left: 12px;
                                     <td>{{ $category->slug }}</td>
                                     <td>
                                         <ul class="cslist"> @foreach ($category->subCategories as $category) <li><i class="fa fa-caret-right"></i>{{ $category->name }} 
-                                            <a href="{{ route('admin.editeCategory',['category_slug'=>$category->slug,'scategory_slug'=>$scategory->slug ]) }}" class="slink"><i class="fa fa-edit"></i></a> 
+                                            <a href="{{ route('admin.editCategory',['category_slug'=>$category->slug,'scategory_slug'=>$scategory->slug ]) }}" class="slink"><i class="fa fa-edit"></i></a> 
                                             <a href="#" onclick="confirm('Are yoy sure, you want to delete this sub category?') || event.stopImmediatePropagation()" wire:click.prevent='deleteSubcateogory({{ $scategory->id }})' class="slink"><i class="fa fa-times tex-danger"></i></a>
                                         </li> @endforeach </ul>
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.editeCategory',['category_slug'=>$category->slug]) }}"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{ route('admin.editCategory',['category_slug'=>$category->slug]) }}"><i class="fa fa-edit fa-2x"></i></a>
                                         <a href="#" onclick="confirm('Are you sure, you want to delete this category?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCategory({{ $category->id }})" style="margin-left: 10px"><i class="fa fa-times fa-2x text-danger"></i></a>
                                     </td>
                                 </tr> @endforeach </tbody>
