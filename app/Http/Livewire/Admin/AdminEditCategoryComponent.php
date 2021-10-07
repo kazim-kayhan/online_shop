@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 
-class AdminEditeCategoryComponent extends Component
+class AdminEditCategoryComponent extends Component
 {
     public $name;
     public $slug;
@@ -71,6 +71,6 @@ class AdminEditeCategoryComponent extends Component
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.admin.admin-edite-category-component', ['categories'=>$categories])->layout('Layouts.base');
+        return view('livewire.admin.admin-edit-category-component', ['categories'=>$categories])->layout('Layouts.base');
     }
 }
