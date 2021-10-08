@@ -14,14 +14,14 @@ class CategoryComponent extends Component
     public $sorting;
     public $pagesize;
     public $category_slug;
-    public $scategory_slug;
+    public $service_category_slug;
 
-    public function mount($category_slug, $scategory_slug=null)
+    public function mount($category_slug, $service_category_slug=null)
     {
         $this->sorting = "default";
         $this->pagesize = 12;
         $this->category_slug = $category_slug;
-        $this->scategory_slug = $scategory_slug;
+        $this->service_category_slug = $service_category_slug;
     }
 
     public function store($product_id, $product_name, $product_price)
@@ -37,8 +37,8 @@ class CategoryComponent extends Component
         $category_id = null;
         $category_name = '';
         $filter = '';
-        if ($this->scategory_slug) {
-            $scategory = Subcategory::where('slug', $this->scategory_slug)->first();
+        if ($this->service_category_slug) {
+            $scategory = Subcategory::where('slug', $this->service_category_slug)->first();
             $category_id = $scategory->id;
             $category_name = $scategory->name;
             $filter = 'sub';

@@ -14,13 +14,13 @@ class AdminEditCategoryComponent extends Component
     public $category_slug;
     public $category_id;
     public $scategory_id;
-    public $scategory_slug;
+    public $service_category_slug;
 
-    public function mount($category_slug, $scategory_slug=null)
+    public function mount($category_slug, $service_category_slug=null)
     {
-        if ($scategory_slug) {
-            $this->scategory_slug = $scategory_slug;
-            $scategory = Subcategory::where('slug', $scategory_slug)->first();
+        if ($service_category_slug) {
+            $this->service_category_slug = $service_category_slug;
+            $scategory = Subcategory::where('slug', $service_category_slug)->first();
             $this->scategory_id = $scategory->id;
             $this->category_id = $scategory->category_id;
             $this->name = $scategory->name;
