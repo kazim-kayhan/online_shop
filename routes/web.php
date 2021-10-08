@@ -13,6 +13,7 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\ThankYouComponent;
 use App\Http\Livewire\WishlistComponent;
+use App\Http\Livewire\User\UserEditProfile;
 use App\Http\Livewire\User\UserOrderComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\User\UserReviewComponent;
@@ -54,7 +55,7 @@ Route::get('/shop', ShopComponent::class);
 Route::get('/cart', CartComponent::class)->name('product.cart');
 Route::get('/checkout', CheckoutComponent::class)->name('checkout');
 Route::get('/product/{slug}', DetailsComponent::class)->name('product.details');
-Route::get('/product-category/{category_slug}/{scategory_slug?}', CategoryComponent::class)->name('product.category');
+Route::get('/product-category/{category_slug}/{service_category_slug?}', CategoryComponent::class)->name('product.category');
 Route::get('/search', SearchComponent::class)->name('product.search');
 Route::get('/wishlist', WishlistComponent::class)->name('product.wishlist');
 Route::get('/thankyou', ThankYouComponent::class)->name('thankyou');
@@ -67,8 +68,9 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('user')->name('user.')->
     Route::get('/orders', UserOrderComponent::class)->name('orders');
     Route::get('/orders/{order_id}', UserOrderDetailsComponent::class)->name('orderDetails');
     Route::get('/review/{order_item_id}', UserReviewComponent::class)->name('review');
-    Route::get('/change-password', UserChangePasswordComponent::class)->name('changepassword');
-    Route::get('/profile',UserProfile::class)->name('profile');
+    Route::get('/change-password', UserChangePasswordComponent::class)->name('changePassword');
+    Route::get('/profile', UserProfile::class)->name('profile');
+    Route::get('/profile/edit', UserEditProfile::class)->name('editProfile');
 });
 
 //for admin
@@ -77,11 +79,11 @@ Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->name('
 
     Route::get('/categories', AdminCategoryComponent::class)->name('categories');
     Route::get('/category/add', AdminAddCategoryComponent::class)->name('addCategory');
-    Route::get('/category/edit/{category_slug}/{scategory_slug?}', AdminEditCategoryComponent::class)->name('editCategory');
+    Route::get('/category/edit/{category_slug}/{service_category_slug?}', AdminEditCategoryComponent::class)->name('editCategory');
 
     Route::get('/products', AdminProductComponent::class)->name('products');
     Route::get('/product/add', AdminAddProductComponent::class)->name('addProduct');
-    Route::get('/product/edit/{product_slug}', AdminEditProductComponent::class)->name('editProdcut');
+    Route::get('/product/edit/{product_slug}', AdminEditProductComponent::class)->name('editProduct');
 
     Route::get('/slider', AdminHomeSliderComponent::class)->name('homeSlider');
     Route::get('/slider/add', AdminAddHomeSliderComponent::class)->name('addHomeSlider');
