@@ -18,11 +18,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <h4>All Products</h4>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <a href="{{ route('admin.addProduct') }}" class="btn btn-success pull-right">Add new product</a>
+                            </div>
+                            <div class="col-md-4">
+                                <input type='search' class='form-control' placeholder='search...' wire:model='searchTerm'/>
                             </div>
                         </div>
                     </div>
