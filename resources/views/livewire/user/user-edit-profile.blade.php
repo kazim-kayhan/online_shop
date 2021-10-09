@@ -10,9 +10,9 @@
                     <div class="col-md-4"> @if($newIimage)
                         <img src="{{ $newImage->temporaryUrl() }}" width="100%">
                         @elseif($image)
-                            <img src="{{ asset('assets/images/profile') }}/{{ $user->profile->image }}" alt="{{ $user->name }} photo" width="100%">
+                            <img src="{{ asset('assets/images/profile') }}/{{ $image }}" alt="{{ auth()->user()->name }} photo" width="100%">
                         @else 
-                            <img src="{{ asset('assets/images/profile/default.png') }}" alt="{{ $user->name }} photo" width="100%"> 
+                            <img src="{{ asset('assets/images/profile/default.png') }}" alt="{{ auth()->user()->name }} photo" width="100%"> 
                         @endif
                             <input type="file" class="form-control" wire:model="newImage">
                     </div>
