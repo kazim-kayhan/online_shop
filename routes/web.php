@@ -13,8 +13,11 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\ThankYouComponent;
 use App\Http\Livewire\WishlistComponent;
+use App\Http\Livewire\Admin\AdminAttribute;
 use App\Http\Livewire\User\UserEditProfile;
+use App\Http\Livewire\Admin\AdminAddAttribute;
 use App\Http\Livewire\User\UserOrderComponent;
+use App\Http\Livewire\Admin\AdminEditAttribute;
 use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\User\UserReviewComponent;
 use App\Http\Livewire\Admin\AdminOrderComponent;
@@ -98,6 +101,11 @@ Route::middleware(['auth:sanctum', 'verified','admin'])->prefix('admin')->name('
     
     Route::get('/orders', AdminOrderComponent::class)->name('orders');
     Route::get('/orders/{order_id}', AdminOrderDetailsComponent::class)->name('orderDetails');
+
     Route::get('/contact-us', AdminContactComponent::class)->name('contact');
     Route::get('/settings', AdminSettingComponent::class)->name('settings');
+
+    Route::get('/attributes', AdminAttribute::class)->name('attributes');
+    Route::get('/attribute/add', AdminAddAttribute::class)->name('addAttribute');
+    Route::get('/attribute/edit/{attribute_id}', AdminEditAttribute::class)->name('editAttribute');
 });
