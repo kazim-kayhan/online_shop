@@ -83,6 +83,9 @@
                                                             <a title="All Categories" href="{{ route('admin.categories') }}">All Categories</a>
                                                         </li>
                                                         <li class="menu-item">
+                                                            <a  title="All Products" href="{{ route('admin.attributes') }}">Attributes</a>
+                                                        </li>
+                                                        <li class="menu-item">
                                                             <a  title="All Products" href="{{ route('admin.products') }}">All Products</a>
                                                         </li>
                                                         <li class="menu-item">
