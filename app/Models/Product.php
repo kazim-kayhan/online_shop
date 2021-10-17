@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 
 class Product extends Model
 {
@@ -15,17 +16,22 @@ class Product extends Model
     protected $table = "products";
     public function category()
     {
-        return $this->belongsTo(Category::class,'category_id');
+        return $this->belongsTo(Category::class);
     }
-    public function favourit(){
+    public function favourit()
+    {
         return $this->hasMany(Favourit::class);
     }
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class, 'product_id');
     }
-    public function subCategories()
+    public function subcategories()
     {
-        return $this->belongsTo(Subcategory::class, 'subcategory_id');
+        return $this->belongsTo(Subcategory::class);
+    }
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class, 'product_id');
     }
 }
