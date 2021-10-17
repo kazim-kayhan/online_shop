@@ -155,6 +155,31 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-4 control-label">Product Attributes</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" wire:model="att">
+                                        <option value="0">Select product Attrubute</option>
+                                        @foreach ($pattributes as $pattribute)
+                                            <option value="{{ $pattribute->id }}">{{ $pattribute->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-info" wire:click.prevent='add'>Add</button>
+                                </div>
+                            </div>
+                            @foreach ($inputs as $key => $value)
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{ $att->where('id',att_arr[$key])->first()->name }}</label>
+                                <div class="col-md-3">
+                                    <input type="text" placeholder="{{ $att->where('id',att_arr[$key])->first()->name }}" class="form-control input-md" wire:model="att_values.{{ $value }}">
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-danger btn-sm" wire:click.prevent='remove({{ $key }})'>Remove</button>
+                                </div>
+                            </div>
+                            @endforeach
+                            <div class="form-group">
                                 <label class="col-md-4 control-label"></label>
                                 <div class="col-md-4">
                                     <button type="submit" class="btn btn-primary">Update</button>
